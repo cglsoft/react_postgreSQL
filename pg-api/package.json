@@ -1,8 +1,9 @@
 {
   "name": "pg-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Projeto demonstração de utilização REACT with PostgreSQL",
+  "main": "server.js",  
+  "repository": "https://github.com/cglsoft/react_postgreSQL.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"

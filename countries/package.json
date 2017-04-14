@@ -1,8 +1,10 @@
 {
-  
+
   "name": "countries",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
+  "description": "Projeto demonstração de utilização REACT with PostgreSQL",
+  "repository": "https://github.com/cglsoft/react_postgreSQL.git",
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
