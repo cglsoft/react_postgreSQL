@@ -14,7 +14,7 @@ const PORT =  3000;
 let pool = new pg.Pool({
     database: 'countries',
     user: 'postgres',
-    password: '201137anab',
+    password: 'teste',
     port: 5432,
     ssl: false,
     max: 20, //set pool max size to 20
@@ -22,8 +22,6 @@ let pool = new pg.Pool({
     idleTimeoutMillis: 1000 //close idle clients after 1 second
 });
 
-// var index = require('./routes/index');
-// var users = require('./routes/users');
 
 // Security Application
 // References: http://scottksmith.com/blog/2014/09/21/protect-your-node-apps-noggin-with-helmet/
@@ -39,18 +37,6 @@ app.use(helmet());
 //  which enable secure cross-domain data transfers. Modern browsers use CORS in an API container 
 // - such as XMLHttpRequest or Fetch - to mitigate risks of cross-origin HTTP requests
 app.use(cors())
-
-// error handler
-/*
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-}); */
 
 // error handling middleware should be loaded after the loading the routes
 if (app.get('env') === 'development') {
