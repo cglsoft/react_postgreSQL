@@ -137,20 +137,25 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>{title}</h1>
-        <form className="countryForm">
-          <input type="text" ref="country_name" placeholder="country_name"></input>
-          <input type="text" ref="continent_name" placeholder="continent_name"></input>
-          <button onClick={this.addCountry.bind(this)}>Add Country</button>
-          {/* <pre>{JSON.stringify(countries)}</pre> */}
-        </form>
+        <div className="container">
 
-        <ul>
-          {countries.map(country => <li key={country.id}> {country.country_name} {country.continent_name}
-             <button onClick={this.removeCountry.bind(this, country.id)}>Remove</button> </li>)}
+          <div className="row">
+            <h1>{title}</h1>
+            <form className="countryForm">
+              <input type="text" ref="country_name" placeholder="country_name"></input>
+              <input type="text" ref="continent_name" placeholder="continent_name"></input>
+              <button onClick={this.addCountry.bind(this)}>Add Country</button>
+              {/* <pre>{JSON.stringify(countries)}</pre> */}
+            </form>
 
-        </ul>
+            <ul>
+              {countries.map(country => <li key={country.id}> {country.country_name} {country.continent_name}
+                <button onClick={this.removeCountry.bind(this, country.id)}>Remove</button> </li>)}
 
+            </ul>
+
+          </div>
+        </div>
       </div>
     );
   }
