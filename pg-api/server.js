@@ -1,20 +1,20 @@
-let compression = require('compression');
-let express = require('express');
-let cors = require('cors');
-let path = require('path');
-let favicon = require('serve-favicon');
-let logger = require('morgan');
-let cookieParser = require('cookie-parser');
-let bodyParser = require('body-parser');
-let errorHandler = require('errorhandler')
-let pg = require('pg');
+var compression = require('compression');
+var express = require('express');
+var cors = require('cors');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var errorHandler = require('errorhandler')
+var pg = require('pg');
 
 const PORT =  3000;
 
 let pool = new pg.Pool({
     database: 'countries',
     user: 'postgres',
-    password: '201137anab',
+    password: 'teste',
     port: 5432,
     ssl: false,
     max: 20, //set pool max size to 20
@@ -58,7 +58,6 @@ if (app.get('env') === 'development') {
   console.log('errorHandle loaded!');
 }
 
-
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'))  // combined
@@ -66,7 +65,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(function(req, res, next) {
+app.use( (req, res, next ) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
@@ -74,8 +73,9 @@ app.use(function(req, res, next) {
 
 app.get('/api/countries', function(request, response){
     pool.connect(function(err,db,done){
-        if(err){
-            return response.status(400).send({error:err})
+        if(err){            
+            console.error(err);
+            response.status(500).send({ 'error' : err});
         } else{
             db.query('SELECT * FROM COUNTRY', function(err, table){
                 done();
@@ -89,6 +89,8 @@ app.get('/api/countries', function(request, response){
         }
     })
 });
+
+
 
 app.post('/api/new-country', function( request, response) {
     var country_name = request.body.country_name;
